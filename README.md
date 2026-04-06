@@ -76,7 +76,7 @@ The dataset contains comprehensive video game sales information with the followi
 1. Clone this repository:
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/safety-crew/MA-Video-Game-Sales-Intelligence-Suite.git
 cd video-game-sales-intelligence
 ```
 
