@@ -1,34 +1,34 @@
-# Video Game Sales Intelligence Suite
+# Steam Game Intelligence Suite
 
 The idea is to tackle 3 distinct ML tasks, each using multiple models, then compare them.
 
 ---
 
-## Task 1 - Sales Tier Classification (Multi-class Classification)
+## Task 1 - Review Score Classification (Multi-class Classification)
 
-Predict whether a game is a **Flop / Mid / Hit / Blockbuster** based on its features.
+Predict a game's review sentiment category based on its features.
 
-- **Features:** genre, console, publisher, developer, critic_score, release_date.
-- **Target:** bucketed `total_sales` (e.g., <0.5M, 0.5–2M, 2–10M, >10M).
-- **Models to compare:** Logistic Regression, Random Forest, XGBoost, LightGBM.
-
----
-
-## Task 2 - Regional Sales Prediction (Regression)
-
-Predict `na_sales`, `jp_sales`, and `pal_sales` separately to understand regional market behavior.
-
-- **Features:** genre, console, critic_score, total_sales (for one region, predict others).
-- **Target:** each regional sales column.
-- **Models to compare:** Ridge Regression, Random Forest Regressor, Gradient Boosting, Neural Network (MLP).
+- **Target:** review score bucket derived from positive review ratio — **Overwhelmingly Negative / Mixed / Mostly Positive / Overwhelmingly Positive**
+- **Features:** price, genre, tags, developer, DLC count, platform support, release year
+- **Models to compare:** Logistic Regression, Random Forest, XGBoost, LightGBM
 
 ---
 
-## Task 3 - Genre/Console Trend Clustering (Unsupervised)
+## Task 2 - Average Playtime Prediction (Regression)
 
-Discover natural groupings among games to surface hidden market segments.
+Predict the average hours played per user to understand what drives long-term engagement.
 
-- **Features:** aggregated sales by genre × console × era
+- **Target:** average playtime (hours) — log-transformed to handle heavy right skew
+- **Features:** genre, tags, price, review score, DLC count, estimated owners
+- **Models to compare:** Ridge Regression, Random Forest Regressor, Gradient Boosting, Neural Network (MLP)
+
+---
+
+## Task 3 - Game Market Segmentation (Unsupervised)
+
+Discover natural groupings among games to surface hidden market segments and genre niches.
+
+- **Features:** price, playtime, review score, genre, tags, estimated owners
 - **Models to compare:** K-Means, DBSCAN, Hierarchical Clustering
 
 ---
@@ -40,14 +40,25 @@ Discover natural groupings among games to surface hidden market segments.
 ├── PROPOSAL.md                   # Detailed project proposal
 ├── data/
 │   └── raw/
-│       ├── data.csv              # Main video game sales dataset
-│       └── data_dictionary.csv   # Data field descriptions
+│       ├── MANIFEST.json                  # Dataset metadata
+│       ├── applications.csv               # Core game records
+│       ├── reviews.csv                    # Review scores and counts
+│       ├── genres.csv                     # Genre lookup
+│       ├── application_genres.csv         # Game-genre mapping
+│       ├── categories.csv                 # Category lookup
+│       ├── application_categories.csv     # Game-category mapping
+│       ├── developers.csv                 # Developer lookup
+│       ├── application_developers.csv     # Game-developer mapping
+│       ├── publishers.csv                 # Publisher lookup
+│       ├── application_publishers.csv     # Game-publisher mapping
+│       ├── platforms.csv                  # Platform lookup
+│       └── application_platforms.csv      # Game-platform mapping
 └── notebooks/
     ├── 00_cleaning.ipynb         # Data cleaning and preprocessing
     ├── 01_eda.ipynb              # Exploratory data analysis (planned)
-    ├── 02_classification.ipynb   # Sales tier classification (planned)
-    ├── 03_regression.ipynb       # Regional sales prediction (planned)
-    ├── 04_clustering.ipynb       # Market trend clustering (planned)
+    ├── 02_classification.ipynb   # Review score classification (planned)
+    ├── 03_regression.ipynb       # Playtime prediction (planned)
+    ├── 04_clustering.ipynb       # Market segmentation (planned)
     └── 05_model_comparison.ipynb # Model comparison & results (planned)
 ```
 
@@ -56,6 +67,7 @@ Discover natural groupings among games to surface hidden market segments.
 ## Why this works well as a multi-model project
 
 - You get to use **classification, regression, and unsupervised** methods — covers a wide ML breadth
-- The dataset has both numerical (`critic_score`, sales) and categorical (`genre`, `console`) features — good for feature engineering practice
-- The ~64k rows is large enough to show meaningful differences between models
-- Missing `critic_score` values (~30–40% likely) make imputation strategy a real design decision
+- The dataset has numerical (`price`, `playtime`, `review counts`) and categorical (`genre`, `tags`) features — good for feature engineering practice
+- Review score is derived from a ratio, making target engineering a real design decision
+- Playtime is heavily right-skewed — log transformation and robust models become meaningful choices
+- Tags are multi-label and high-cardinality — opens up interesting encoding strategies (multi-hot, embeddings, TF-IDF)
