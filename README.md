@@ -78,7 +78,7 @@ The dataset is structured as a set of normalized relational tables:
 | `application_platforms.csv`  | Many-to-many mapping of games to platforms                                     |
 | `MANIFEST.json`              | Dataset metadata                                                               |
 
-**Data Source**: Steam Store / SteamSpy
+**Data Source**: ![Steam Store / SteamSpy](https://www.kaggle.com/datasets/crainbramp/steam-dataset-2025-multi-modal-gaming-analytics)
 
 ## Getting Started
 
