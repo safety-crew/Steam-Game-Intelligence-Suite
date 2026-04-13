@@ -128,5 +128,4 @@ This project is for educational and research purposes. Please refer to VGChartz 
 
 ---
 
-**Note**: This project is currently in development. The cleaning notebook is complete, with additional analysis notebooks planned for implementation.</content>
-<parameter name="filePath">c:\Cursor Projects\Video-Game-Sales\README.md
+**Note**: This project is currently in development. The cleaning notebook is not complete, with additional analysis notebooks planned for implementation.
