@@ -8,7 +8,7 @@ This project tackles three machine learning tasks to extract valuable insights f
 
 ### Task 1: Review Score Classification (Multi-class Classification)
 
-Predict a game's review sentiment category — **Overwhelmingly Negative / Mixed / Mostly Positive / Overwhelmingly Positive** — based on its features.
+Predict a game's review sentiment category - **Overwhelmingly Negative / Mixed / Mostly Positive / Overwhelmingly Positive** - based on its features.
 
 - **Features**: price, genre, tags, developer, DLC count, platform support, release year
 - **Target**: review score bucket (derived from positive review ratio)
@@ -64,8 +64,8 @@ The dataset is structured as a set of normalized relational tables:
 
 | File                         | Description                                                                    |
 | ---------------------------- | ------------------------------------------------------------------------------ |
-| `applications.csv`           | Core game records — name, price, review scores, playtime, owners, release date |
-| `reviews.csv`                | Per-game review data — positive/negative counts, review score category         |
+| `applications.csv`           | Core game records - name, price, review scores, playtime, owners, release date |
+| `reviews.csv`                | Per-game review data - positive/negative counts, review score category         |
 | `genres.csv`                 | Genre lookup table                                                             |
 | `application_genres.csv`     | Many-to-many mapping of games to genres                                        |
 | `categories.csv`             | Category lookup table (e.g. Single-player, Co-op, VR)                          |

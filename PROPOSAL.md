@@ -8,7 +8,7 @@ The idea is to tackle 3 distinct ML tasks, each using multiple models, then comp
 
 Predict a game's review sentiment category based on its features.
 
-- **Target:** review score bucket derived from positive review ratio — **Overwhelmingly Negative / Mixed / Mostly Positive / Overwhelmingly Positive**
+- **Target:** review score bucket derived from positive review ratio - **Overwhelmingly Negative / Mixed / Mostly Positive / Overwhelmingly Positive**
 - **Features:** price, genre, tags, developer, DLC count, platform support, release year
 - **Models to compare:** Logistic Regression, Random Forest, XGBoost, LightGBM
 
@@ -18,7 +18,7 @@ Predict a game's review sentiment category based on its features.
 
 Predict the average hours played per user to understand what drives long-term engagement.
 
-- **Target:** average playtime (hours) — log-transformed to handle heavy right skew
+- **Target:** average playtime (hours) - log-transformed to handle heavy right skew
 - **Features:** genre, tags, price, review score, DLC count, estimated owners
 - **Models to compare:** Ridge Regression, Random Forest Regressor, Gradient Boosting, Neural Network (MLP)
 
@@ -66,8 +66,8 @@ Discover natural groupings among games to surface hidden market segments and gen
 
 ## Why this works well as a multi-model project
 
-- You get to use **classification, regression, and unsupervised** methods — covers a wide ML breadth
-- The dataset has numerical (`price`, `playtime`, `review counts`) and categorical (`genre`, `tags`) features — good for feature engineering practice
+- You get to use **classification, regression, and unsupervised** methods - covers a wide ML breadth
+- The dataset has numerical (`price`, `playtime`, `review counts`) and categorical (`genre`, `tags`) features - good for feature engineering practice
 - Review score is derived from a ratio, making target engineering a real design decision
-- Playtime is heavily right-skewed — log transformation and robust models become meaningful choices
-- Tags are multi-label and high-cardinality — opens up interesting encoding strategies (multi-hot, embeddings, TF-IDF)
+- Playtime is heavily right-skewed - log transformation and robust models become meaningful choices
+- Tags are multi-label and high-cardinality - opens up interesting encoding strategies (multi-hot, embeddings, TF-IDF)
